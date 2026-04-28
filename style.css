@@ -5,20 +5,20 @@
    ================================================================ */
 
 :root {
-  /* --- Colors --- */
-  --bg:           #f5f4f0;
-  --surface:      #ffffff;
-  --border:       #d8d5cc;
-  --text:         #1a1917;
-  --text-muted:   #6b6860;
-  --accent:       #2a6496;
-  --accent-hover: #1c4a72;
-  --badge-bg:     #e8f0e8;
-  --badge-text:   #2d5a2d;
-  --code-bg:      #eeecea;
-  --nav-bg:       #1a1917;
-  --nav-text:     #e8e6e1;
-  --nav-active:   #ffffff;
+  /* --- Colors — macOS High Sierra palette --- */
+  --bg:           #e8eaed;        /* Sierra desktop grey */
+  --surface:      #f2f3f5;        /* window/card background */
+  --border:       #c4c7cc;        /* window border / divider */
+  --text:         #1d1d1f;        /* primary text */
+  --text-muted:   #6e6e73;        /* secondary / caption text */
+  --accent:       #0070c9;        /* macOS Sierra blue */
+  --accent-hover: #0058a6;        /* darker blue on hover */
+  --badge-bg:     #d4e9fa;        /* light blue badge */
+  --badge-text:   #004f8c;        /* dark blue badge text */
+  --code-bg:      #dde0e5;        /* inline code background */
+  --nav-bg:       #3a3a3c;        /* unified toolbar dark grey */
+  --nav-text:     #d1d1d6;        /* toolbar text */
+  --nav-active:   #ffffff;        /* active nav link */
 
   /* --- Typography --- */
   --font-body:    'Georgia', 'Times New Roman', serif;
@@ -166,6 +166,7 @@ main {
   min-width: 0;
   max-width: var(--content-max);
   padding: 2rem 3rem 4rem 3rem;
+  margin: 0 auto;
 }
 
 /* ================================================================
