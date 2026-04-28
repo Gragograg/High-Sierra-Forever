@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High Sierra Forever</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       SITE CONFIG — edit this section to customize everything
+       ============================================================ -->
+  <!-- See style.css for color/font config -->
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-active">Setup</a>
+      <!-- Add more nav links here:
+      <a href="app-library.html">App Library</a>
+      -->
+    </nav>
+  </header>
+
+  <aside id="toc">
+    <ul>
+      <li><a href="#why">Why High Sierra?</a></li>
+      <li><a href="#hardware">Hardware</a></li>
+      <li><a href="#obtaining">Obtaining High Sierra</a></li>
+      <li><a href="#setup">Initial Setup</a></li>
+      <li><a href="#security">Security Patches</a></li>
+      <li><a href="#browser">Web Browsing</a></li>
+      <li><a href="#media">Media Playback</a></li>
+      <!-- Add more TOC entries here as you add sections -->
+    </ul>
+  </aside>
+
+  <main>
+
+    <section id="hero">
+      <h1>High Sierra Forever</h1>
+      <p class="tagline">macOS 10.13 — still the last great macOS.<br>Here's how I am going to keep it running beautifully.</p>
+    </section>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION: Why High Sierra?
+         ============================================================ -->
+    <section id="why">
+      <h2>Why High Sierra, specifically?</h2>
+      <p>
+        macOS High Sierra, released in 2017, represents a turning point. It's the last version of macOS
+        that shipped with the old HFS+ alongside the new APFS, the last to support 32-bit apps
+        natively, and the last to carry the visual spirit of the original Mac OS X Aqua interface
+        before Apple's relentless flattening campaign fully took hold.
+      </p>
+      <p>
+        It's fast. It's stable. The menu bar is still dark and dense with information. Finder
+        doesn't try to be iOS. And it runs on a wide range of real hardware — including machines
+        that Apple abandoned years ago but which have decades of life still in them.
+      </p>
+      <p>
+        This site is a living guide for running macOS 10.13 High Sierra in the present day —
+        keeping it online, keeping it safe, and keeping it yours.
+      </p>
+    </section>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION: Hardware
+         ============================================================ -->
+    <section id="hardware">
+      <h2>Hardware</h2>
+
+      <h3>Supported Macs</h3>
+      <p>
+        High Sierra officially supports Macs from roughly 2009–2010 onwards, depending on the model.
+        This includes MacBook Pros from late 2009, MacBook Airs from 2010, iMacs from 2009,
+        and Mac Pros from 2010. A full list is available on
+        <a href="https://support.apple.com/en-us/101662" target="_blank" rel="noopener">Apple's support page</a>.
+      </p>
+
+      <h3>Unsupported Macs (OpenCore Patcher)</h3>
+      <p>
+        Thanks to the <a href="https://dortania.github.io/OpenCore-Legacy-Patcher/" target="_blank" rel="noopener">OpenCore Legacy Patcher</a>,
+        many older Macs that Apple dropped can still run High Sierra — and beyond. If your Mac is
+        too old for the official installer, OCLP is the first thing to try.
+      </p>
+
+      <h3>Hackintosh</h3>
+      <p>
+        High Sierra was the last release with reliable, community-tested Hackintosh support for
+        a very wide range of hardware. If you're building or repurposing a PC, it's an excellent
+        target. Dortania's
+        <a href="https://dortania.github.io/OpenCore-Install-Guide/" target="_blank" rel="noopener">OpenCore Install Guide</a>
+        covers the process in detail.
+      </p>
+    </section>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION: Obtaining High Sierra
+         ============================================================ -->
+    <section id="obtaining">
+      <h2>Obtaining High Sierra</h2>
+      <p>
+        Apple still hosts the High Sierra installer in the Mac App Store. Open the App Store on
+        any Mac and search for "macOS High Sierra", or use this direct link from Apple:
+      </p>
+      <pre><code>https://apps.apple.com/us/app/macos-high-sierra/id1246284741</code></pre>
+      <p>
+        If you're on a newer Mac that can't run High Sierra, you can still download the installer
+        to create a bootable USB. The downloaded app will appear in <code>/Applications</code>.
+      </p>
+
+      <h3>Creating a Bootable Installer</h3>
+      <p>
+        With a 8GB+ USB drive inserted, run the following in Terminal
+        (replace <code>MyVolume</code> with the name of your USB drive):
+      </p>
+      <pre><code>sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia \
+  --volume /Volumes/MyVolume</code></pre>
+    </section>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION: Initial Setup
+         ============================================================ -->
+    <section id="setup">
+      <h2>Initial Setup</h2>
+      <p>
+        After a fresh install, the first thing to do is apply all available Apple updates.
+        Open <strong>App Store → Updates</strong> and install everything. Then reboot and repeat
+        until no updates remain. The final version of High Sierra is <strong>10.13.6</strong>
+        with the supplemental security update from 2020.
+      </p>
+
+      <h3>System Integrity Protection</h3>
+      <p>
+        SIP is enabled by default and is generally a good thing to keep on. However, some patches
+        and tools on this page require it to be disabled temporarily. To do so, boot into Recovery
+        (hold <kbd>⌘R</kbd> at startup) and run:
+      </p>
+      <pre><code>csrutil disable</code></pre>
+      <p>Re-enable it when you're done patching: <code>csrutil enable</code></p>
+
+      <!-- Add more setup steps here -->
+    </section>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION: Security
+         ============================================================ -->
+    <section id="security">
+      <h2>Security Patches</h2>
+      <p>
+        Apple's last official security update for High Sierra was in late 2020. Running it today
+        carries real risk — especially with an outdated browser. The most important mitigations:
+      </p>
+      <ul>
+        <li>Never use Safari for general browsing. It is not safe on this OS.</li>
+        <li>Keep your router firmware up to date.</li>
+        <li>Regularly back up to an external drive.</li>
+        <li>Avoid opening untrusted files, especially fonts and PDFs.</li>
+      </ul>
+      <p>
+        Community-maintained patches for specific CVEs will be listed here as they become available.
+        <!-- Add download cards here as needed -->
+      </p>
+    </section>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION: Web Browsing
+         ============================================================ -->
+    <section id="browser">
+      <h2>Web Browsing</h2>
+      <p>
+        The most critical thing to get right on an old OS is your browser. Safari on High Sierra
+        is dangerously outdated and should not be used for any web browsing.
+      </p>
+
+      <div class="download-card">
+        <div class="download-card-header">
+          <strong>Firefox ESR</strong>
+          <span class="badge">Recommended</span>
+        </div>
+        <p>
+          Mozilla maintains Extended Support Releases of Firefox with longer security update cycles.
+          Check which ESR version still supports macOS 10.13 at the time you're reading this —
+          it changes over time. Download directly from Mozilla.
+        </p>
+        <a class="download-btn" href="https://www.mozilla.org/en-US/firefox/all/#product-desktop-esr" target="_blank" rel="noopener">
+          Mozilla Downloads →
+        </a>
+      </div>
+
+      <div class="download-card">
+        <div class="download-card-header">
+          <strong>Chromium Ungoogled</strong>
+        </div>
+        <p>
+          Chromium builds without Google telemetry are available from the community and sometimes
+          have longer support for older operating systems than the official Chrome releases.
+        </p>
+        <a class="download-btn" href="https://github.com/ungoogled-software/ungoogled-chromium" target="_blank" rel="noopener">
+          GitHub →
+        </a>
+      </div>
+
+      <!-- Add more download cards here:
+      <div class="download-card">
+        <div class="download-card-header">
+          <strong>Tool Name</strong>
+          <span class="badge">New</span>
+        </div>
+        <p>Description of the tool.</p>
+        <a class="download-btn" href="#">Download</a>
+      </div>
+      -->
+    </section>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION: Media Playback
+         ============================================================ -->
+    <section id="media">
+      <h2>Media Playback</h2>
+      <p>
+        High Sierra's QuickTime Player handles common formats well, but struggles with modern
+        codecs like VP9, AV1, and some HEVC profiles. The best solution is IINA.
+      </p>
+
+      <div class="download-card">
+        <div class="download-card-header">
+          <strong>IINA</strong>
+          <span class="badge">Recommended</span>
+        </div>
+        <p>
+          IINA is a modern, native macOS media player built on top of mpv. It handles virtually
+          every video format and feels right at home on the Mac. Older releases support High Sierra.
+        </p>
+        <a class="download-btn" href="https://iina.io" target="_blank" rel="noopener">
+          iina.io →
+        </a>
+      </div>
+
+      <div class="download-card">
+        <div class="download-card-header">
+          <strong>VLC</strong>
+        </div>
+        <p>
+          The perennial fallback. VLC plays everything and has macOS releases going back years.
+          The latest VLC 3.x series supports High Sierra.
+        </p>
+        <a class="download-btn" href="https://www.videolan.org/vlc/" target="_blank" rel="noopener">
+          videolan.org →
+        </a>
+      </div>
+    </section>
+
+    <hr>
+
+    <p class="closing">
+      This site is a work in progress. More sections — app libraries, tips, and community tools
+      — are on the way.
+    </p>
+
+  </main>
+
+  <footer>
+    <p>High Sierra Forever &mdash; a community guide for macOS 10.13</p>
+    <nav>
+      <a href="index.html">Setup</a>
+      <!-- <a href="app-library.html">App Library</a> -->
+    </nav>
+  </footer>
+
+</body>
+</html>

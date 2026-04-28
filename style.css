@@ -1,0 +1,451 @@
+/* ================================================================
+   HIGH SIERRA FOREVER — style.css
+   ================================================================
+   CONFIGURATION — edit these variables to restyle the whole site
+   ================================================================ */
+
+:root {
+  /* --- Colors --- */
+  --bg:           #f5f4f0;        /* page background */
+  --surface:      #ffffff;        /* card / aside background */
+  --border:       #d8d5cc;        /* dividers, borders */
+  --text:         #1a1917;        /* body text */
+  --text-muted:   #6b6860;        /* secondary text, captions */
+  --accent:       #2a6496;        /* links, buttons, active states */
+  --accent-hover: #1c4a72;        /* link/button hover */
+  --badge-bg:     #e8f0e8;        /* badge pill background */
+  --badge-text:   #2d5a2d;        /* badge pill text */
+  --code-bg:      #eeecea;        /* inline code / pre blocks */
+  --nav-bg:       #1a1917;        /* top nav bar background */
+  --nav-text:     #e8e6e1;        /* top nav text */
+  --nav-active:   #ffffff;        /* active nav link */
+
+  /* --- Typography --- */
+  --font-body:    'Georgia', 'Times New Roman', serif;
+  --font-ui:      -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'SF Mono', 'Menlo', 'Consolas', monospace;
+  --font-size:    17px;
+  --line-height:  1.7;
+
+  /* --- Layout --- */
+  --max-width:    760px;          /* main content column width */
+  --toc-width:    210px;          /* sidebar table of contents width */
+  --gap:          2.5rem;         /* spacing between sections */
+}
+
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: var(--font-size);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: var(--line-height);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ================================================================
+   TOP NAV
+   ================================================================ */
+
+header {
+  background: var(--nav-bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #333;
+}
+
+header nav {
+  max-width: calc(var(--max-width) + var(--toc-width) + 6rem);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+}
+
+header nav a {
+  color: var(--nav-text);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1rem;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+
+header nav a:hover,
+header nav a.nav-active {
+  color: var(--nav-active);
+  border-bottom-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ================================================================
+   PAGE LAYOUT — main + sidebar
+   ================================================================ */
+
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  min-height: 100vh;
+}
+
+header { grid-area: header; }
+footer { grid-area: footer; }
+
+/* The wrapper that holds sidebar + main */
+body > aside,
+body > main {
+  grid-area: content;
+}
+
+/* Use a different approach: flex wrapper around aside+main */
+body {
+  display: block;
+}
+
+.page-wrap {
+  display: flex;
+  align-items: flex-start;
+  max-width: calc(var(--max-width) + var(--toc-width) + 6rem);
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+  gap: 3rem;
+}
+
+/* ================================================================
+   SIDEBAR — TABLE OF CONTENTS
+   ================================================================ */
+
+#toc {
+  width: var(--toc-width);
+  flex-shrink: 0;
+  position: sticky;
+  top: 3rem;
+  padding-top: 1.5rem;
+  font-family: var(--font-ui);
+}
+
+#toc ul {
+  list-style: none;
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+}
+
+#toc li {
+  margin-bottom: 0.15rem;
+}
+
+#toc a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  display: block;
+  padding: 0.2rem 0;
+  transition: color 0.15s;
+  text-decoration: none;
+}
+
+#toc a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ================================================================
+   MAIN CONTENT
+   ================================================================ */
+
+main {
+  flex: 1;
+  min-width: 0;
+  padding-top: 1.5rem;
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+
+#hero {
+  padding-bottom: 1.5rem;
+}
+
+#hero h1 {
+  font-family: var(--font-ui);
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.tagline {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* ================================================================
+   SECTIONS
+   ================================================================ */
+
+section {
+  padding: var(--gap) 0;
+}
+
+section + section {
+  padding-top: 0;
+}
+
+h2 {
+  font-family: var(--font-ui);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0;
+}
+
+p {
+  margin-bottom: 0.9rem;
+  color: var(--text);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul, ol {
+  margin: 0.5rem 0 1rem 1.5rem;
+}
+
+li {
+  margin-bottom: 0.3rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ================================================================
+   CODE
+   ================================================================ */
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.83em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 0.05em 0.4em;
+  color: var(--text);
+}
+
+/* ================================================================
+   DOWNLOAD CARDS
+   ================================================================ */
+
+.download-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin: 1.2rem 0;
+}
+
+.download-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-ui);
+}
+
+.download-card-header strong {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.download-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+  line-height: 1.55;
+}
+
+.badge {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 0.2em 0.6em;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.download-btn {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  padding: 0.4em 0.9em;
+  transition: background 0.15s, color 0.15s;
+}
+
+.download-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ================================================================
+   CLOSING NOTE
+   ================================================================ */
+
+.closing {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding-top: 0.5rem;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+
+footer {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #333;
+}
+
+footer p {
+  color: var(--nav-text);
+  margin-bottom: 0.4rem;
+}
+
+footer nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+footer nav a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+footer nav a:hover {
+  color: var(--nav-active);
+  text-decoration: none;
+}
+
+/* ================================================================
+   LAYOUT WRAPPER — inject after nav
+   ================================================================ */
+
+/* We use a JS-free approach: wrap aside + main in CSS */
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 760px) {
+  #toc {
+    display: none; /* hide sidebar on mobile */
+  }
+
+  .page-wrap {
+    padding: 1.5rem 1.2rem 3rem;
+    gap: 0;
+  }
+
+  #hero h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
