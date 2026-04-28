@@ -1,52 +1,44 @@
 /* ================================================================
    HIGH SIERRA FOREVER — style.css
    ================================================================
-   CONFIGURATION — edit these CSS variables to restyle the whole site
+   CONFIGURATION
    ================================================================ */
 
 :root {
-  /* --- Colors — macOS High Sierra palette --- */
-  --bg:           #e8eaed;        /* Sierra desktop grey */
-  --surface:      #f2f3f5;        /* window/card background */
-  --border:       #c4c7cc;        /* window border / divider */
+  /* --- Colors — macOS High Sierra --- */
+  --bg:           #e9eaec;        /* Sierra desktop grey */
+  --surface:      #f0f1f3;        /* card / TOC background */
+  --border:       #c8cacf;        /* borders */
   --text:         #1d1d1f;        /* primary text */
-  --text-muted:   #6e6e73;        /* secondary / caption text */
-  --accent:       #0070c9;        /* macOS Sierra blue */
-  --accent-hover: #0058a6;        /* darker blue on hover */
-  --badge-bg:     #d4e9fa;        /* light blue badge */
-  --badge-text:   #004f8c;        /* dark blue badge text */
-  --code-bg:      #dde0e5;        /* inline code background */
-  --nav-bg:       #3a3a3c;        /* unified toolbar dark grey */
-  --nav-text:     #d1d1d6;        /* toolbar text */
-  --nav-active:   #ffffff;        /* active nav link */
+  --text-muted:   #6e6e73;        /* secondary text */
+  --accent:       #0070c9;        /* Sierra blue */
+  --accent-hover: #0058a6;
+  --badge-bg:     #d4e9fa;
+  --badge-text:   #004f8c;
+  --code-bg:      #d8dade;
+  --nav-bg:       #3b3b3d;        /* macOS unified titlebar dark */
+  --nav-text:     #d1d1d6;
+  --nav-active:   #ffffff;
+  --nav-border:   #555557;
 
   /* --- Typography --- */
-  --font-body:    'Georgia', 'Times New Roman', serif;
-  --font-ui:      -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-body:    -apple-system, 'Helvetica Neue', Arial, sans-serif;
   --font-mono:    'SF Mono', 'Menlo', 'Consolas', monospace;
-  --font-size:    17px;
+  --font-size:    15px;
   --line-height:  1.7;
 
   /* --- Layout --- */
-  --toc-width:    200px;
-  --content-max:  720px;
-  --gap:          2.5rem;
+  --content-width: 520px;
+  --gap:           2.2rem;
 }
 
 /* ================================================================
    RESET & BASE
    ================================================================ */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-  font-size: var(--font-size);
-}
+html { scroll-behavior: smooth; font-size: var(--font-size); }
 
 body {
   font-family: var(--font-body);
@@ -54,144 +46,118 @@ body {
   color: var(--text);
   line-height: var(--line-height);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
-}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
 
 /* ================================================================
-   TOP NAV
+   TOP NAV — pill style like mavericksforever
    ================================================================ */
 
 header {
   background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 2rem;
 }
 
 header nav {
   display: flex;
-  padding: 0 2rem;
+  background: #555558;
+  border: 1px solid #666669;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 header nav a {
   color: var(--nav-text);
-  font-family: var(--font-ui);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  padding: 0.75rem 1rem;
-  display: inline-block;
-  border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
-  text-decoration: none;
-}
-
-header nav a:hover,
-header nav a.nav-active {
-  color: var(--nav-active);
-  border-bottom-color: var(--accent);
-  text-decoration: none;
-}
-
-/* ================================================================
-   PAGE LAYOUT
-   ================================================================ */
-
-.page-wrap {
-  display: flex;
-  flex: 1;
-  align-items: flex-start;
-}
-
-/* ================================================================
-   SIDEBAR — left column, sticky TOC
-   ================================================================ */
-
-#toc {
-  width: var(--toc-width);
-  flex-shrink: 0;
-  position: sticky;
-  top: 2.75rem;
-  height: calc(100vh - 2.75rem);
-  overflow-y: auto;
-  padding: 2rem 1.2rem 2rem 2rem;
-  border-right: 1px solid var(--border);
-  background: var(--bg);
-}
-
-#toc ul {
-  list-style: none;
-  border-left: 2px solid var(--border);
-  padding-left: 0.9rem;
-}
-
-#toc li {
-  margin-bottom: 0.1rem;
-}
-
-#toc a {
   font-size: 0.82rem;
-  font-family: var(--font-ui);
-  color: var(--text-muted);
-  line-height: 1.4;
-  display: block;
-  padding: 0.25rem 0;
-  transition: color 0.15s;
+  font-weight: 500;
+  padding: 0.3rem 1.1rem;
+  display: inline-block;
+  text-decoration: none;
+  border-right: 1px solid #666669;
+  transition: background 0.12s, color 0.12s;
+}
+
+header nav a:last-child { border-right: none; }
+
+header nav a:hover {
+  background: #6a6a6d;
+  color: #fff;
   text-decoration: none;
 }
 
-#toc a:hover {
+header nav a.nav-active {
+  background: var(--nav-bg);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ================================================================
+   FLOATING TOC — bottom left, like mavericksforever
+   ================================================================ */
+
+.toc-float {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 165px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  z-index: 50;
+}
+
+.toc-float ul { list-style: none; }
+
+.toc-float li { margin-bottom: 0; }
+
+.toc-float a {
+  font-size: 0.8rem;
+  color: var(--text);
+  display: block;
+  padding: 0.28rem 0;
+  text-decoration: none;
+  transition: color 0.12s;
+  border-bottom: none;
+}
+
+.toc-float a:hover {
   color: var(--accent);
   text-decoration: none;
 }
 
 /* ================================================================
-   MAIN CONTENT — right column
+   MAIN CONTENT — centered column
    ================================================================ */
 
 main {
-  flex: 1;
-  min-width: 0;
-  max-width: var(--content-max);
-  padding: 2rem 3rem 4rem 3rem;
+  max-width: var(--content-width);
   margin: 0 auto;
+  padding: 3rem 1rem 5rem;
 }
 
-/* ================================================================
-   HERO
-   ================================================================ */
-
-#hero {
-  padding-bottom: 1.5rem;
-}
-
-#hero h1 {
-  font-family: var(--font-ui);
-  font-size: 2.6rem;
+h1 {
+  font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 2.5rem;
   color: var(--text);
-  margin-bottom: 0.6rem;
 }
 
-.tagline {
-  font-size: 1.05rem;
-  color: var(--text-muted);
-  font-style: italic;
-  line-height: 1.55;
+.intro {
+  margin-bottom: 2.5rem;
+  color: var(--text);
 }
 
 /* ================================================================
@@ -199,52 +165,32 @@ main {
    ================================================================ */
 
 section {
-  padding: var(--gap) 0;
-}
-
-section:first-child {
-  padding-top: 0;
+  margin-bottom: var(--gap);
+  padding-top: var(--gap);
+  border-top: 1px solid var(--border);
 }
 
 h2 {
-  font-family: var(--font-ui);
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   letter-spacing: -0.01em;
 }
 
 h3 {
-  font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text);
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 1.3rem;
+  margin-bottom: 0.4rem;
 }
 
-p {
-  margin-bottom: 0.9rem;
-}
+p { margin-bottom: 0.8rem; }
+p:last-child { margin-bottom: 0; }
 
-p:last-child {
-  margin-bottom: 0;
-}
-
-ul, ol {
-  margin: 0.5rem 0 1rem 1.5rem;
-}
-
-li {
-  margin-bottom: 0.3rem;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
+ul, ol { margin: 0.4rem 0 0.9rem 1.4rem; }
+li { margin-bottom: 0.25rem; }
 
 /* ================================================================
    CODE
@@ -252,28 +198,22 @@ hr {
 
 code {
   font-family: var(--font-mono);
-  font-size: 0.83em;
+  font-size: 0.82em;
   background: var(--code-bg);
   padding: 0.1em 0.35em;
   border-radius: 3px;
-  color: var(--text);
 }
 
 pre {
   background: var(--code-bg);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 1rem 1.2rem;
+  padding: 0.9rem 1.1rem;
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: 0.9rem 0;
 }
 
-pre code {
-  background: none;
-  padding: 0;
-  font-size: 0.85rem;
-  line-height: 1.55;
-}
+pre code { background: none; padding: 0; font-size: 0.83rem; line-height: 1.5; }
 
 kbd {
   font-family: var(--font-mono);
@@ -283,7 +223,6 @@ kbd {
   border-bottom-width: 2px;
   border-radius: 3px;
   padding: 0.05em 0.4em;
-  color: var(--text);
 }
 
 /* ================================================================
@@ -294,38 +233,32 @@ kbd {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 1.2rem 1.4rem;
-  margin: 1.2rem 0;
+  padding: 1.1rem 1.3rem;
+  margin: 1rem 0;
 }
 
 .download-card-header {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.6rem;
-  font-family: var(--font-ui);
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.download-card-header strong {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
-}
+.download-card-header strong { font-size: 0.95rem; font-weight: 600; }
 
 .download-card p {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  margin-bottom: 0.9rem;
-  line-height: 1.55;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
 }
 
 .badge {
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
   background: var(--badge-bg);
   color: var(--badge-text);
-  padding: 0.2em 0.6em;
+  padding: 0.18em 0.55em;
   border-radius: 100px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -333,14 +266,13 @@ kbd {
 
 .download-btn {
   display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--accent);
-  text-decoration: none;
   border: 1px solid var(--accent);
   border-radius: 5px;
-  padding: 0.4em 0.9em;
+  padding: 0.35em 0.85em;
+  text-decoration: none;
   transition: background 0.15s, color 0.15s;
 }
 
@@ -356,54 +288,29 @@ kbd {
 
 footer {
   background: var(--nav-bg);
+  border-top: 1px solid var(--nav-border);
   color: var(--nav-text);
-  font-family: var(--font-ui);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   text-align: center;
-  padding: 1.5rem 2rem;
-  border-top: 1px solid #333;
+  padding: 1.4rem 2rem;
 }
 
-footer p {
-  color: var(--nav-text);
-  margin-bottom: 0.4rem;
-}
+footer p { color: var(--nav-text); margin-bottom: 0.35rem; }
 
-footer nav {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
+footer nav { display: flex; justify-content: center; gap: 1.4rem; }
 
-footer nav a {
-  color: #999;
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-footer nav a:hover {
-  color: var(--nav-active);
-  text-decoration: none;
-}
+footer nav a { color: #999; text-decoration: none; transition: color 0.15s; }
+footer nav a:hover { color: #fff; text-decoration: none; }
 
 /* ================================================================
    RESPONSIVE
    ================================================================ */
 
-@media (max-width: 680px) {
-  #toc {
-    display: none;
-  }
+@media (max-width: 860px) {
+  .toc-float { display: none; }
+}
 
-  main {
-    padding: 1.5rem 1.2rem 3rem;
-  }
-
-  #hero h1 {
-    font-size: 1.9rem;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-  }
+@media (max-width: 580px) {
+  main { padding: 2rem 1.2rem 4rem; }
+  h1 { font-size: 1.7rem; }
 }
