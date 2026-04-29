@@ -21,7 +21,7 @@
       <li><a href="#hardware">Hardware</a></li>
       <li><a href="#obtaining">Obtaining High Sierra</a></li>
       <li><a href="#setup">Initial Setup</a></li>
-      <li><a href="#security">Security Patches</a></li>
+      <li><a href="#security">Online Services</a></li>
       <li><a href="#browser">Web Browsing</a></li>
       <li><a href="#media">Media Playback</a></li>
       <!-- Add more TOC entries here -->
@@ -98,8 +98,39 @@ sudo rm -rf "/Applications/iBooks.app"</code></pre>
     </section>
 
     <section id="security">
-      <h2>Security Patches</h2>
-      <!-- your content here -->
+      <h2>Online Services</h2>
+      <p>This Step might be a bit Tricky but if you Follow the Next steps for the Most Mommon Stuff you can make it Work</p>
+      <details>
+  <summary>Google Accounts</summary>
+  <p>
+
+Go to myaccount.google.com/security and select "2-Step Verification". If 2-Step Verification is turned off, turn it on; there is no way to avoid this. Then, select the "app passwords" option and follow the instructions to create an app password.
+
+Next, open System Preferences → Internet Accounts and sign into Google using your app password in lieu of your normal password.
+
+Certain unusual Google accounts require an alternate sign in procedure. If you are using an app password but still can't seem to sign in, follow the below instructions. This is usually not necessary.
+
+    Email
+        In System Preferences → Internet Accounts, click Add Other Account...
+        Select Add a Mail account
+        Enter your full email address and app password where indicated
+        When asked which services to enable, deselect everything except Mail
+    Calendar
+        In System Preferences → Internet Accounts, click Add Other Account...
+        Select Add a CalDAV account
+        Enter your full email address and app password where indicated
+        Set the server address to apidata.googleusercontent.com
+        Enter your full email address and app password where indicated
+
+.</p>
+</details>
+
+<details open>
+  <summary>iCloud Contacts and Calendars even iCloud Mail</summary>
+ <p>As far as i know you can just do <strong>System Prefrences --> iCloud </strong> and you can just Log In with your Apple ID you will be Asked to put in the Verification Code and that Should be it </p>
+</details>
+
+
     </section>
 
     <section id="browser">
