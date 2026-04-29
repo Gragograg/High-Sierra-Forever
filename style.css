@@ -348,3 +348,32 @@ details > p, details > ul, details > pre {
 details > p + p {
   padding-top: 0;
 }
+
+details > *:not(summary) {
+  padding: 0 1rem;
+}
+
+details > *:not(summary):first-of-type {
+  padding-top: 0.9rem;
+}
+
+details > *:not(summary):last-child {
+  padding-bottom: 0.9rem;
+}
+
+details p {
+  margin-bottom: 0.7rem;
+}
+
+details p:last-child {
+  margin-bottom: 0;
+}
+
+details a {
+  color: var(--accent);
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
