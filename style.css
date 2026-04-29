@@ -316,3 +316,35 @@ footer nav a:hover { color: #fff; text-decoration: none; }
   main { padding: 2rem 1.2rem 4rem; }
   h1 { font-size: 1.7rem; }
 }
+/* ==================================================================
+DETAILS
+===================================================================== */
+details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+details summary {
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+details summary::-webkit-details-marker { display: none; }
+
+details[open] summary {
+  border-bottom: 1px solid var(--border);
+}
+
+details > p, details > ul, details > pre {
+  padding: 0.9rem 1rem;
+  margin: 0;
+}
+
+details > p + p {
+  padding-top: 0;
+}
